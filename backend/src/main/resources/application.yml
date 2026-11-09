@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: career-odyssey
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/outreach_db?createDatabaseIfNotExist=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+  thymeleaf:
+    cache: false
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+
+dsa:
+  default-user-id: 1
+
+server:
+  error:
+    include-message: always

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Professional Outreach</title>
+</head>
+
+<body style="margin:0; padding:20px; background-color:#f4f7fb;
+             font-family:Arial, Helvetica, sans-serif;
+             color:#374151; line-height:1.5;">
+
+<div style="max-width:780px; margin:0 auto;
+            background-color:#ffffff;
+            border:1px solid #e5e7eb;
+            border-radius:10px;
+            overflow:hidden;">
+
+    <!-- ================= HEADER ================= -->
+    <div style="background-color:#1f4e79; padding:18px 26px;">
+
+        <div style="font-size:21px;
+                    font-weight:bold;
+                    color:#ffffff;"
+             th:text="${candidateName}">
+            Candidate Name
+        </div>
+
+        <div th:if="${jobTitle != null and !#strings.isEmpty(jobTitle)}"
+             style="margin-top:3px;
+                    font-size:13px;
+                    color:#dbeafe;"
+             th:text="${jobTitle}">
+            Job Title
+        </div>
+
+    </div>
+
+
+    <!-- ================= CONTENT ================= -->
+    <div style="padding:22px 26px;">
+
+        <!-- Greeting -->
+        <p style="margin:0 0 12px 0; font-size:16px; font-weight:bold; color:#1f2937;">
+
+            <span th:if="${hrName != null and !#strings.isEmpty(hrName)}">
+                Hi <span th:text="${hrName}">HR</span>,
+            </span>
+
+            <span th:unless="${hrName != null and !#strings.isEmpty(hrName)}">
+                Hello,
+            </span>
+
+        </p>
+
+
+        <!-- ================= INTRODUCTION ================= -->
+
+        <p style="margin:0 0 13px 0; font-size:14px;">
+
+            I hope you're doing well.
+
+        </p>
+
+
+        <p style="margin:0 0 13px 0; font-size:14px;">
+
+            My name is
+            <strong style="color:#1f4e79;"
+                    th:text="${candidateName}">
+                Candidate Name
+            </strong>,
+
+            and I'm reaching out to express my interest in
+
+            <strong th:if="${jobTitle != null and !#strings.isEmpty(jobTitle)}"
+                    th:text="${jobTitle}">
+                Job Title
+            </strong>
+
+            opportunities at
+
+            <strong style="color:#1f4e79;"
+                    th:text="${companyName}">
+                Company Name
+            </strong>.
+
+        </p>
+
+
+        <!-- ================= TRANSITION LINE ================= -->
+
+        <p style="margin:0 0 15px 0; font-size:14px;">
+            I believe my background and technical skills could be a strong fit for your team.
+            Here's a brief overview of my profile:
+        </p>
+
+
+        <!-- ================= EXPERIENCE ================= -->
+
+        <div th:if="${(currentCompany != null and !#strings.isEmpty(currentCompany))
+                     or
+                     (previousCompany != null and !#strings.isEmpty(previousCompany))}"
+             style="margin:0 0 16px 0;">
+
+            <div style="font-size:15px;
+                        font-weight:bold;
+                        color:#1f2937;
+                        margin-bottom:9px;">
+                Experience
+                <span th:if="${overallExperience != null and !#strings.isEmpty(overallExperience)}"
+                      style="font-size:12px; font-weight:normal; color:#6b7280;"
+                      th:text="'(' + ${overallExperience} + ' overall)'">
+                    (overall)
+                </span>
+            </div>
+
+
+            <!-- Current Experience -->
+            <div th:if="${currentCompany != null and !#strings.isEmpty(currentCompany)}"
+                 style="margin-bottom:10px;
+                        padding-left:12px;
+                        border-left:3px solid #1f4e79;">
+
+                <div style="font-size:13px;
+                            color:#1f2937;">
+
+                    <strong th:if="${currentDesignation != null and !#strings.isEmpty(currentDesignation)}"
+                            th:text="${currentDesignation}">
+                        Designation
+                    </strong>
+
+                    <span th:if="${currentDesignation != null and !#strings.isEmpty(currentDesignation)}">
+                        ·
+                    </span>
+
+                    <strong th:text="${currentCompany}">
+                        Company
+                    </strong>
+
+                    <span th:if="${currentDuration != null and !#strings.isEmpty(currentDuration)}"
+                          style="color:#6b7280;"
+                          th:text="' — ' + ${currentDuration}">
+                        — Duration
+                    </span>
+
+                </div>
+
+                <div th:if="${currentSummary != null and !#strings.isEmpty(currentSummary)}"
+                     style="margin-top:3px;
+                            font-size:13px;
+                            color:#4b5563;"
+                     th:text="${currentSummary}">
+                    Current experience summary
+                </div>
+
+            </div>
+
+
+            <!-- Previous Experience -->
+            <div th:if="${previousCompany != null and !#strings.isEmpty(previousCompany)}"
+                 style="padding-left:12px;
+                        border-left:3px solid #d1d5db;">
+
+                <div style="font-size:13px;
+                            color:#1f2937;">
+
+                    <strong th:if="${previousDesignation != null and !#strings.isEmpty(previousDesignation)}"
+                            th:text="${previousDesignation}">
+                        Designation
+                    </strong>
+
+                    <span th:if="${previousDesignation != null and !#strings.isEmpty(previousDesignation)}">
+                        ·
+                    </span>
+
+                    <strong th:text="${previousCompany}">
+                        Company
+                    </strong>
+
+                    <span th:if="${previousDuration != null and !#strings.isEmpty(previousDuration)}"
+                          style="color:#6b7280;"
+                          th:text="' — ' + ${previousDuration}">
+                        — Duration
+                    </span>
+
+                </div>
+
+                <div th:if="${previousSummary != null and !#strings.isEmpty(previousSummary)}"
+                     style="margin-top:3px;
+                            font-size:13px;
+                            color:#4b5563;"
+                     th:text="${previousSummary}">
+                    Previous experience summary
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= TECHNICAL SKILLS ================= -->
+
+        <div th:if="${skills != null and !#strings.isEmpty(skills)}"
+             style="margin:0 0 16px 0;
+                    padding:12px 14px;
+                    background-color:#f8fafc;
+                    border:1px solid #e2e8f0;
+                    border-radius:7px;">
+
+            <div style="font-size:13px;
+                        font-weight:bold;
+                        color:#1f4e79;
+                        margin-bottom:4px;">
+                Technical Skills
+            </div>
+
+            <div style="font-size:13px;
+                        color:#374151;"
+                 th:text="${skills}">
+                Technical Skills
+            </div>
+
+        </div>
+
+
+        <!-- ================= JOB REFERENCE ================= -->
+
+        <div th:if="${jobUrl != null and !#strings.isEmpty(jobUrl)}"
+             style="margin:0 0 15px 0;
+                    font-size:13px;">
+
+            <strong style="color:#1f4e79;">
+                Job Reference:
+            </strong>
+
+            <a th:href="${jobUrl}"
+               style="color:#2563eb;
+                      text-decoration:none;">
+                View Posting
+            </a>
+
+        </div>
+
+
+        <!-- ================= ADDITIONAL DETAILS ================= -->
+
+        <div th:if="${(education != null and !#strings.isEmpty(education))
+                     or
+                     (noticePeriod != null and !#strings.isEmpty(noticePeriod))
+                     or
+                     (expectedSalary != null and !#strings.isEmpty(expectedSalary))}"
+             style="margin:0 0 15px 0;
+                    padding:11px 14px;
+                    border:1px solid #e5e7eb;
+                    border-radius:7px;
+                    font-size:13px;">
+
+            <!-- Education -->
+            <div th:if="${education != null and !#strings.isEmpty(education)}"
+                 style="margin-bottom:6px;">
+
+                <strong style="color:#1f4e79;">
+                    Education:
+                </strong>
+
+                <span th:text="${education}">
+                    Education
+                </span>
+
+            </div>
+
+
+            <!-- Notice Period -->
+            <div th:if="${noticePeriod != null and !#strings.isEmpty(noticePeriod)}"
+                 style="margin-bottom:6px;">
+
+                <strong style="color:#1f4e79;">
+                    Notice Period:
+                </strong>
+
+                <span th:text="${noticePeriod}">
+                    Notice Period
+                </span>
+
+            </div>
+
+
+            <!-- Expected Salary -->
+            <div th:if="${expectedSalary != null and !#strings.isEmpty(expectedSalary)}">
+
+                <strong style="color:#1f4e79;">
+                    Expected:
+                </strong>
+
+                <span th:text="${expectedSalary}">
+                    Expected Salary
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RESUME ================= -->
+
+        <div th:if="${resumeAttached
+                     or
+                     (resumeDriveLink != null and !#strings.isEmpty(resumeDriveLink))}"
+             style="margin:0 0 16px 0;
+                    padding:14px 15px;
+                    background-color:#f8fafc;
+                    border:1px solid #e2e8f0;
+                    border-radius:7px;">
+
+            <div style="font-size:13px;
+                        margin-bottom:9px;">
+
+                <span th:if="${resumeAttached}">
+                    I've attached my resume for your review.
+                </span>
+
+                <span th:unless="${resumeAttached}">
+                    My resume is available for your review.
+                </span>
+
+            </div>
+
+
+            <!-- Resume Drive Link -->
+            <a th:if="${resumeDriveLink != null and !#strings.isEmpty(resumeDriveLink)}"
+               th:href="${resumeDriveLink}"
+               target="_blank"
+               style="display:inline-block;
+                      background-color:#1f4e79;
+                      color:#ffffff;
+                      padding:8px 16px;
+                      border-radius:5px;
+                      font-weight:bold;
+                      font-size:12px;
+                      text-decoration:none;">
+
+                <span th:if="${resumeAttached}">
+                    Resume Attached — View on Drive
+                </span>
+
+                <span th:unless="${resumeAttached}">
+                    View Resume
+                </span>
+
+            </a>
+
+
+            <!-- Attached Resume Without Drive -->
+            <span th:if="${resumeAttached
+                          and
+                          (resumeDriveLink == null
+                           or
+                           #strings.isEmpty(resumeDriveLink))}"
+                  style="display:inline-block;
+                         background-color:#1f4e79;
+                         color:#ffffff;
+                         padding:8px 16px;
+                         border-radius:5px;
+                         font-weight:bold;
+                         font-size:12px;">
+
+                Resume Attached
+
+            </span>
+
+        </div>
+
+
+        <!-- ================= CLOSING ================= -->
+
+        <p style="margin:0;
+                  font-size:13px;
+                  color:#374151;">
+
+            Thank you for your time and consideration.
+            I would appreciate the opportunity to discuss my profile
+            and any relevant role with your team.
+
+            <br/><br/>
+
+            Best regards,<br/>
+
+            <strong style="color:#1f4e79;"
+                    th:text="${candidateName}">
+                Candidate Name
+            </strong>
+
+        </p>
+
+    </div>
+
+
+    <!-- ================= GET IN TOUCH ================= -->
+    <div th:if="${(linkedinUrl != null and !#strings.isEmpty(linkedinUrl))
+                 or (githubUrl != null and !#strings.isEmpty(githubUrl))
+                 or (portfolioUrl != null and !#strings.isEmpty(portfolioUrl))
+                 or (candidateEmail != null and !#strings.isEmpty(candidateEmail))
+                 or (phone != null and !#strings.isEmpty(phone))}"
+         style="background-color:#1b263b; padding:24px 26px; text-align:center;">
+
+        <div style="color:#ffffff; font-size:13px; font-weight:bold; letter-spacing:0.04em;
+                    text-transform:uppercase; margin-bottom:14px;">
+            Get In Touch
+        </div>
+
+        <a th:if="${linkedinUrl != null and !#strings.isEmpty(linkedinUrl)}"
+           th:href="${linkedinUrl}" target="_blank"
+           style="display:inline-block; text-decoration:none; margin:0 10px 8px;">
+            <span style="display:inline-block; width:26px; height:26px; line-height:26px;
+                         border-radius:50%; background-color:#0a66c2; color:#ffffff;
+                         font-size:11px; font-weight:bold; text-align:center; vertical-align:middle;">in</span>
+            <span style="color:#e6edf3; font-size:13px; font-weight:600; vertical-align:middle; margin-left:8px;">LinkedIn</span>
+        </a>
+
+        <a th:if="${githubUrl != null and !#strings.isEmpty(githubUrl)}"
+           th:href="${githubUrl}" target="_blank"
+           style="display:inline-block; text-decoration:none; margin:0 10px 8px;">
+            <span style="display:inline-block; width:26px; height:26px; line-height:26px;
+                         border-radius:50%; background-color:#ffffff; text-align:center; vertical-align:middle;">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+                     width="16" height="16" alt="GitHub"
+                     style="vertical-align:middle; border:0; display:inline;"/>
+            </span>
+            <span style="color:#e6edf3; font-size:13px; font-weight:600; vertical-align:middle; margin-left:8px;">GitHub</span>
+        </a>
+
+        <a th:if="${portfolioUrl != null and !#strings.isEmpty(portfolioUrl)}"
+           th:href="${portfolioUrl}" target="_blank"
+           style="display:inline-block; text-decoration:none; margin:0 10px 8px;">
+            <span style="display:inline-block; width:26px; height:26px; line-height:26px;
+                         border-radius:50%; background-color:#2563eb; color:#ffffff;
+                         font-size:12px; font-weight:bold; text-align:center; vertical-align:middle;">&#128279;</span>
+            <span style="color:#e6edf3; font-size:13px; font-weight:600; vertical-align:middle; margin-left:8px;">Portfolio</span>
+        </a>
+
+        <a th:if="${candidateEmail != null and !#strings.isEmpty(candidateEmail)}"
+           th:href="'mailto:' + ${candidateEmail}"
+           style="display:inline-block; text-decoration:none; margin:0 10px 8px;">
+            <span style="display:inline-block; width:26px; height:26px; line-height:26px;
+                         border-radius:50%; background-color:#ea4335; text-align:center; vertical-align:middle;
+                         font-size:13px;">&#9993;&#65039;</span>
+            <span style="color:#e6edf3; font-size:13px; font-weight:600; vertical-align:middle; margin-left:8px;"
+                  th:text="${candidateEmail}">email@example.com</span>
+        </a>
+
+        <a th:if="${phone != null and !#strings.isEmpty(phone)}"
+           th:href="'tel:' + ${phone}"
+           style="display:inline-block; text-decoration:none; margin:0 10px 8px;">
+            <span style="display:inline-block; width:26px; height:26px; line-height:26px;
+                         border-radius:50%; background-color:#16a34a; text-align:center; vertical-align:middle;
+                         font-size:13px;">&#128222;</span>
+            <span style="color:#e6edf3; font-size:13px; font-weight:600; vertical-align:middle; margin-left:8px;"
+                  th:text="${phone}">+1 234 567 8900</span>
+        </a>
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <div style="padding:10px 26px;
+                background-color:#f8fafc;
+                border-top:1px solid #e5e7eb;
+                text-align:center;">
+
+        <p style="margin:0;
+                  font-size:10px;
+                  color:#9ca3af;">
+            This email was sent as a professional job application inquiry.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
